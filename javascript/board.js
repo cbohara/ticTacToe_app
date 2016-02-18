@@ -1,7 +1,18 @@
 (function(){
 	window.boardLogic = {};
 
-	// first we need to be able to create a board.
+	/* this function creates each piece on the board. Each piece is an object with coordinates and a state.
+	
+	STATE: can either be null, 'X' or 'O'. When the first player clicks on an empty square, the squares state should be changed to 'X', when the second player clicks on an empty square, the state should be changed to 'O'.
+
+	COORDINATES: The coordintes are the string value of the column and row.
+
+	Here's an example:
+
+	[[{}, {}, {name: 'piece', coordinates: '02', state: null}] 
+	 [{}, {}, {}] 
+	 [{}, {}, {}]]
+	*/
 	boardLogic.createPiece = function(coordinates){
 		var piece = {
 			name: 'piece',
@@ -11,7 +22,17 @@
 
 		return piece;
 	};
-	
+	/* 
+
+	Here we create a board constructor which has all the logic we'll need to make this thing work.
+
+	Our Board is an object that does a couple of things: 
+
+	1. Holds the turnCount (Board.turnCount). The turnCount tells the program whether its player 1 or player 2's turn.
+
+	2. Board.board is the matrix itself. calling Board.resetBoard() creates a new 3 by 3 matrix where the states of each object are set to null.
+
+	*/ 
 	boardLogic.createBoard = function(){	
 		var Board = {
 			turnCount: 2,
@@ -31,6 +52,7 @@
 		return Board;
 	};
 
+
 	boardLogic.create = function(num){
 		var board = _.range(num);
 		_.each(board, function(space, index, board){
@@ -45,70 +67,6 @@
 
 	window.Board = boardLogic.createBoard();
 
-	boardLogic.updateState = function(currentSquare, boardObject){
-	 
-	 if (currentSquare.state === null && boardObject.turnCount % 2 === 0){
-	 	currentSquare.state = 'X';
-	 	boardObject.increment();
-	 	return currentSquare.state;
-	 } else if (currentSquare.state === null && boardObject.turnCount % 2 === 1) {
-	 	currentSquare.state = 'O'
-	 	boardObject.increment();
-	 	return currentSquare.state;
-	 } else if (currentSquare.state !== null) {
-	 	return 'current square filled';
-	 }
-
-	};
-
-	boardLogic.catsGame = function(board){
-		return _.every(board, function(row){
-			var checkAllRows = _.every(row, function(square){
-				if (square.state !== null){
-					return true;
-				}
-			});
-
-			return checkAllRows;
-		});
-	};
-
-	boardLogic.checkHorizontalWin = function(currentSquare, board){
-		var currentRow = currentSquare.coordinates.toString().split('')[0];
-		var currentState = currentSquare.state;
-		return _.every(board[currentRow], function(square){
-			return currentState === square.state;
-		});
-	};
-
-	boardLogic.checkVerticalWin = function(currentSquare, board){
-		var currentColumn = currentSquare.coordinates.toString().split('')[1];
-		var currentState = currentSquare.state;
-		var columnPieces = _.flatten(_.map(board, function(row){
-			return _.filter(row, function(square){
-				var squareColumn = square.coordinates[1];
-				if (squareColumn === currentColumn.toString()){
-					return true;
-				} else {
-					return false;
-				}
-			});
-		}));
-
-		return _.every(columnPieces, function(square){
-			return square.state === currentState;
-		});
-	};
-
-	boardLogic.playAgain = function(prompt, board){
-		if (prompt){
-			board.resetBoard();
-			board.resetTurnCount();
-			$('.square').removeClass("X");
-			$('.square').removeClass("O");
-		}
-	};
-	
 	boardLogic.findSquare = function(board, coordinates){
 	  var result;
 	  _.each(board, function(row){
@@ -125,38 +83,37 @@
 	  return result;
 	};
 
-	boardLogic.checkDiagonalWin = function(currentSquare, board){
-		var currentState = currentSquare.state;
-		var currentCoordinates = currentSquare.coordinates;
-		var diagonalSquares = _.flatten(_.map(board, function(row){
-			if (currentCoordinates[0] === currentCoordinates[1]) {
-				return _.filter(row, function(square){
-					if (square.coordinates[0] === square.coordinates[1]){
-						return true;
-					} else {
-						return false;
-					}
-				});
-		    } else if (Number(currentCoordinates[0]) + Number(currentCoordinates[1]) === 2){
-				return _.filter(row, function(square){
-					if (Number(square.coordinates[0]) + Number(square.coordinates[1]) === 2){
-						return true;
-					} else {
-						false;
-					}
-				});
-			}
-		}));
-		
-		return _.every(diagonalSquares, function(square){
-			if (square === undefined){
-				return false;
-			}
-			console.log(square.state);
-			console.log(currentState);
 
-			return square.state === currentState;
-		});
+
+// ======================== Helper functions to solve ====================================
+	
+
+	boardLogic.updateState = function(currentSquare, boardObject){
+		// check the squares state. If it is player 1's turn, change the current squares state to X. and return the squares state.
+		// if it is player 2's turn, change the current squares state to 'O' and return the squares state.
+		// if the square has already been used, return 'current square filled'
+
+	};
+
+	boardLogic.catsGame = function(board){
+		// look through the board return true if all of the squares have been filled but no one has won.
+	};
+
+	boardLogic.checkHorizontalWin = function(currentSquare, board){
+	// if every square in the currentSquares row has the same state, that player has won.
+	};
+
+	boardLogic.checkVerticalWin = function(currentSquare, board){
+	// if every square in the currentSquares column has the same state, that player has won.
+	};
+
+	boardLogic.playAgain = function(prompt, board){
+		// if the players prompt is true, clear the state from each square in the board.
+	};
+	
+	
+	boardLogic.checkDiagonalWin = function(currentSquare, board){
+		// if every square diagonal to the currentSquare is has the same state, that player has won.
 	};
 
 
