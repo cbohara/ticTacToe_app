@@ -119,7 +119,7 @@ var xoArray = [];
 	boardLogic.checkHorizontalWin = function(currentSquare, board){
 	// if every square in the currentSquares row has the same state, that player has won.
 	/*loop through xArray and oArray
-	if array = ["00","11",""] OR ["10","11","12"] OR ["20","21","22"]
+	if array = ["00","01","02"] OR ["10","11","12"] OR ["20","21","22"]
 	return true	
 	*/
 		// loop through xArray
@@ -242,7 +242,7 @@ var xoArray = [];
 	boardLogic.playAgain = function(prompt, board){
 		// if the players prompt is true, clear the state from each square in the board back to null
 		if(prompt){
-			return Board.resetBoard();
+			Board.resetBoard();
 		}
 	};
 })();

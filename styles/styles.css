@@ -1,15 +1,16 @@
 body {
-  font-family:"Roboto", Arial, sans-serif;
+  font-family: "Arial Black", Gadget, sans-serif;
   text-align:center;
   margin-top:50px;
   color:#FFF;
   text-shadow:-1px -1px #333;
-  background:#333;
+  background:black;
 }
 
 
 h1 { 
-  font-family: Georgia
+  font-family: "Arial Black", Gadget, sans-serif;
+  margin-left: 10%;
 }
 
 #container {
@@ -47,13 +48,13 @@ td {
 }
 
 .X:before {
-  font-family: Georgia;
-  font-size: 200%;
+  font-family: "Arial Black", Gadget, sans-serif;
+  font-size: 300%;
   content: 'X';
 }
 
 .O:before {
-  font-family: Georgia;
-  font-size: 200%;
+  font-family: "Arial Black", Gadget, sans-serif;
+  font-size: 300%;
   content: 'O';
 }
