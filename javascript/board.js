@@ -13,7 +13,7 @@
 		var piece = {
 			name: 'piece',
 			coordinates: coordinates,
-			state: null,
+			state: null
 		};
 		return piece;
 	};
@@ -57,7 +57,6 @@
 		
 		return Board;
 	};
-	// creates a new game with a fresh board
 	window.Board = boardLogic.createBoard();
 
 	// find the square within the board
@@ -242,7 +241,14 @@ var xoArray = [];
 	boardLogic.playAgain = function(prompt, board){
 		// if the players prompt is true, clear the state from each square in the board back to null
 		if(prompt){
-			Board.resetBoard();
+			// empty out arrays
+			xArray = [];
+			oArray = [];
+			xoArray = [];
+			// change turnCount to 2
+			board.resetTurnCount();
+			// set each square to null
+			console.log('board',board);
 		}
 	};
 })();
