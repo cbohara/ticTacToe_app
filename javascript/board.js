@@ -238,8 +238,8 @@ var xoArray = [];
 	};
 
 	boardLogic.playAgain = function(prompt, board){
-		// if the players prompt is true, clear the state from each square in the board back to null
 		window.location.reload();
+		// if the players prompt is true, clear the state from each square in the board back to null
 		/*
 		if(prompt){
 			// empty out arrays
@@ -257,9 +257,8 @@ var xoArray = [];
 					object.state = null;
 				});
 			});
-			// !!!!!!!!!!!!USE JQUERY!!!!!!!
+			// USE JQUERY
 			// remove nodes with X or O class
-			// !!!!!! v DONT USE THIS CLUNKY FORMAT v !!!!!
 			var xClass = document.getElementsByClassName('X');
 			console.log(xClass);
 			var oClass = document.getElementsByClassName('O');
