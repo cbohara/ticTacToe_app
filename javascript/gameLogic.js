@@ -1,4 +1,3 @@
-// do not need to modify
 $(document).ready(function(){
 	var boardObject = window.Board;
 	// access just the matrix of the window.Board object

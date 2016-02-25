@@ -239,6 +239,8 @@ var xoArray = [];
 
 	boardLogic.playAgain = function(prompt, board){
 		// if the players prompt is true, clear the state from each square in the board back to null
+		window.location.reload();
+		/*
 		if(prompt){
 			// empty out arrays
 			xArray = [];
@@ -247,21 +249,23 @@ var xoArray = [];
 			// change turnCount to 2
 			board.resetTurnCount();
 			// set each square to null
-			console.log(board);
-			console.log('board.board',board.board);
-			console.log('[0]',board.board[0]);
-			console.log('[0][0]',board.board[0][0]);
-			console.log(board.board[0][0].state);
 			// board.board is [Array[3], Array[3], Array[3]]
 			_.each(board.board,function(row){
 				// row aka board.board[0] is [Object, Object, Object]
-				_.map(row, function(object){
+				_.each(row, function(object){
 					// Object aka board.board[0][0] is {name: "piece", coordinates: "00", state: "X"}
-					object.state === null;
+					object.state = null;
 				});
 			});
+			// !!!!!!!!!!!!USE JQUERY!!!!!!!
+			// remove nodes with X or O class
+			// !!!!!! v DONT USE THIS CLUNKY FORMAT v !!!!!
+			var xClass = document.getElementsByClassName('X');
+			console.log(xClass);
+			var oClass = document.getElementsByClassName('O');
+			console.log(oClass);
+			//loop through nodes and remove X or O class
 		}
-		console.log('after??',board.board);
-		return board;
+		*/	
 	}
 })();
