@@ -59,7 +59,6 @@
 	};
 	window.Board = boardLogic.createBoard();
 
-	// find the square within the board
 	boardLogic.findSquare = function(board, coordinates){
 		var result;
 	  	_.each(board, function(row){
@@ -248,7 +247,21 @@ var xoArray = [];
 			// change turnCount to 2
 			board.resetTurnCount();
 			// set each square to null
-			console.log('board',board);
+			console.log(board);
+			console.log('board.board',board.board);
+			console.log('[0]',board.board[0]);
+			console.log('[0][0]',board.board[0][0]);
+			console.log(board.board[0][0].state);
+			// board.board is [Array[3], Array[3], Array[3]]
+			_.each(board.board,function(row){
+				// row aka board.board[0] is [Object, Object, Object]
+				_.map(row, function(object){
+					// Object aka board.board[0][0] is {name: "piece", coordinates: "00", state: "X"}
+					object.state === null;
+				});
+			});
 		}
-	};
+		console.log('after??',board.board);
+		return board;
+	}
 })();
